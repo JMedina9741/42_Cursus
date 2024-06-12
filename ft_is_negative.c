@@ -1,6 +1,6 @@
 #include <unistd.h>
 
-void    ft_puchar(char h);
+void    ft_putchar(char h);
 
 void    ft_is_negative(int n)
 {
