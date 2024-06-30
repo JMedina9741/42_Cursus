@@ -1,4 +1,4 @@
-int ft_iterative_favtorial(int nb)
+int ft_iterative_factorial(int nb)
 {
     int r;
 
