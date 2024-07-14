@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javiermedina <javiermedina@student.42.f    +#+  +:+       +#+        */
+/*   By: javmedin <javmedin@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 00:47:52 by javiermedin       #+#    #+#             */
-/*   Updated: 2024/05/23 01:26:41 by javiermedin      ###   ########.fr       */
+/*   Created: 2024/07/15 00:04:23 by javmedin          #+#    #+#             */
+/*   Updated: 2024/07/15 00:04:32 by javmedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
