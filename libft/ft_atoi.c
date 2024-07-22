@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javiermedina <javiermedina@student.42.f    +#+  +:+       +#+        */
+/*   By: javmedin <javmedin@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:45:17 by javiermedin       #+#    #+#             */
-/*   Updated: 2024/05/21 23:43:02 by javiermedin      ###   ########.fr       */
+/*   Updated: 2024/07/23 01:34:20 by javmedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 int	ft_atoi(const char *str)
 {
-	int		sign;
-	long long	value;
-	
-	sign = 1;
-	value = 0;
-	while (*str == ' ' || *str == '\f' || *str == '\n' ||
-			*str == '\r' || *str == '\t' || *str == '\v')
+	int	s;
+	int	val;
+
+	s = 1;
+	val = 0;
+	while (*str == ' ' || *str == '\n' || *str == '\t' || *str == '\f'
+		|| *str == '\v' || *str == '\r')
 		str++;
 	if (*str == '-')
-		sign = -1;
+		s = -1;
 	if (*str == '-' || *str == '+')
 		++str;
 	while (ft_isdigit(*str))
 	{
-		value = value * 10 + (*str - '0');
+		val = val * 10 + (*str - '0');
 		str++;
 	}
-	value = sign == 1 ? value : - value;
-	return (value);
+	val *= s;
+	return (val);
 }
