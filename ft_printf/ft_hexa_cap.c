@@ -6,7 +6,7 @@
 /*   By: javmedin <javmedin@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:49:14 by javmedin          #+#    #+#             */
-/*   Updated: 2024/10/28 19:57:37 by javmedin         ###   ########.fr       */
+/*   Updated: 2024/10/28 20:14:29 by javmedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	hexa_rec(const char *bstr, unsigned long long num, int count)
 	{
 		if (write(1, &bstr[0], 1) == -1)
 			return (-1);
-		return (-1);
+		return (1);
 	}
 
 	// Recursive call for non-zero values
