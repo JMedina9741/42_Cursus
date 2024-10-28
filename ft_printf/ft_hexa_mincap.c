@@ -6,7 +6,7 @@
 /*   By: javmedin <javmedin@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:01:52 by javmedin          #+#    #+#             */
-/*   Updated: 2024/10/28 00:23:34 by javmedin         ###   ########.fr       */
+/*   Updated: 2024/10/28 00:57:41 by javmedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int  puthexa_long(char *bstr, unsigned long long n, int c)
         c = puthexa_long(bstr, n / b, c);
         if (c == -1)
                 return (-1);
-        if (write(1, &bstr[n], 1) == -1)
+        if (write(1, &bstr[n % b], 1) == -1)
                 return (-1);
         c++;
     }
