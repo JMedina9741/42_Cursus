@@ -6,66 +6,51 @@
 /*   By: javmedin <javmedin@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:49:14 by javmedin          #+#    #+#             */
-/*   Updated: 2024/10/28 00:57:49 by javmedin         ###   ########.fr       */
+/*   Updated: 2024/10/28 19:57:37 by javmedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int  puthexa_long(char *bstr, unsigned long long n, int c)
+// Helper function to recursively print a number in hexadecimal format
+static int	hexa_rec(const char *bstr, unsigned long long num, int count)
 {
-    unsigned long long  b;
+	unsigned long long	bslen;
 
-    b = ft_strlen(bstr);
-    if (n >= b)
-    {
-        c = puthexa_long(bstr, n / b, c);
-        if (c == -1)
-                return (-1);
-        if (write (1, &bstr[n % b], 1) == -1)
-                return (-1);
-        c++;
-    }
-    else if (n < b)
-    {
-        if (write (1, &bstr[n], 1) == -1)
-                return (-1);
-        c++;
-    }
-    return (c);
+	bslen = ft_strlen(bstr);
+
+	// Base case for zero, ensuring "0" is printed if num is initially 0
+	if (num == 0 && count == 0)
+	{
+		if (write(1, &bstr[0], 1) == -1)
+			return (-1);
+		return (-1);
+	}
+
+	// Recursive call for non-zero values
+	if (num >= bslen)
+	{
+		count = hexa_rec(bstr, num / bslen, count);
+		if (count == -1)  // Error handling for recursive call
+			return (-1);
+	}
+	// Write the current digit and increment count
+	if (write(1, &bstr[num % bslen], 1) == -1)
+		return (-1);
+	return (count + 1);
 }
 
-static int  puthexa_uns(char *bstr, unsigned int n, int c)
+// Main function to print an integer in uppercase hexadecimal
+int	ft_hexa_mayus(int n)
 {
-    unsigned int    b;
+	int	let;
 
-    b = ft_strlen(bstr);
-    if (n >= b)
-    {
-        c = puthexa_uns(bstr, n / b, c);
-        if (c == -1)
-                return (-1);
-        if (write(1, &bstr[n % b], 1) == -1)
-                return (-1);
-        c++;
-    }
-    else if (n < b)
-    {
-        if (write(1, &bstr[n], 1) == -1)
-                return (-1);
-        c++;
-    }
-    return (c);
-}
+        let = 0;
 
-int ft_hexa_cap(int n)
-{
-    int let;
-
-    let = 0;
-    if (n >= 0)
-            let = puthexa_long("0123456789ABCDEF", n, let);
-    else if (n < 0)
-            let = puthexa_uns("0123456789ABCDEF", n, let);
-    return (let);
+	if (n < 0)
+		// For negative values, cast to unsigned int to handle two's complement representation
+		return (hexa_rec("0123456789ABCDEF", (unsigned int)n, let));
+	else
+		// For non-negative values, treat as unsigned long long
+		return (hexa_rec("0123456789ABCDEF", (unsigned long long)n, let));
 }

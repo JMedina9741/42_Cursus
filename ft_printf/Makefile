@@ -6,7 +6,7 @@
 #    By: javmedin <javmedin@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/13 21:28:42 by javmedin          #+#    #+#              #
-#    Updated: 2024/10/28 01:05:11 by javmedin         ###   ########.fr        #
+#    Updated: 2024/10/28 19:47:48 by javmedin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ RM = rm -f
 AR = ar rcs
 CFLAGS = -Wall -Wextra -Werror
 
-%.o: %.c ${INCLUDE} Makefile
+%.o: %.c ${INCLUDE} 
 			@${CC} ${CFLAGS} -c $< -o $@
 
 OBJS = ${SRCS:.c=.o}
