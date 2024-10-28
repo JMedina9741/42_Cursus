@@ -6,7 +6,7 @@
 /*   By: javmedin <javmedin@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:18:42 by javmedin          #+#    #+#             */
-/*   Updated: 2024/09/13 21:19:16 by javmedin         ###   ########.fr       */
+/*   Updated: 2024/10/28 01:03:25 by javmedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,12 @@ static int	type_var(char c, va_list element)
 	if (c == 'd' || c == 'i')
 		return (ft_putnbr(va_arg(element, int)));
 	if (c == 'p')
-		return (ft_punt_hexa(va_arg(element, void *)));
+		return (ft_point_hexa(va_arg(element, void *)));
 	if (c == 'u')
-		return (ft_num_nosign(va_arg(element, unsigned int)));
+		return (ft_uns_num(va_arg(element, unsigned int)));
 	if (c == 'X')
-		return (ft_hexa_mayus(va_arg(element, int)));
+		return (ft_hexa_cap(va_arg(element, int)));
 	if (c == 'x')
-		return (ft_hexa_min(va_arg(element, int)));
+		return (ft_hexa_mincap(va_arg(element, int)));
 	return (0);
 }
