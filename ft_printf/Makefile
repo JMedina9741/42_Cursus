@@ -6,38 +6,39 @@
 #    By: javmedin <javmedin@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/13 21:28:42 by javmedin          #+#    #+#              #
-#    Updated: 2024/10/28 19:47:48 by javmedin         ###   ########.fr        #
+#    Updated: 2024/11/04 00:43:14 by javmedin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
+CC = cc
+CFLAGS = -Wall -Werror -Wextra
 
-SRCS = ft_printf.c ft_putchar.c ft_putnbr.c ft_uns_num.c ft_point_hexa.c \
-				ft_putstr.c ft_strlen.c ft_hexa_mincap.c ft_hexa_cap.c
+SRC = ft_strlen.c	\
+				ft_putchar_fd.c		\
+				ft_putstr_fd.c		\
+				ft_putnbr_fd.c		\
+				ft_printf.c			\
+				ft_putnbr_base.c	\
+				ft_putptr.c			\
+				ft_putunsigned.c
 
-INCLUDE = ft_printf.h
+OBJ = ${SRC:.c=.o}
 
-CC = gcc
-RM = rm -f
-AR = ar rcs
-CFLAGS = -Wall -Wextra -Werror
+all: $(NAME)
 
-%.o: %.c ${INCLUDE} 
-			@${CC} ${CFLAGS} -c $< -o $@
+$(NAME): $(OBJ) ft_printf.h Makefile
+	$(AR) rcs $(NAME) $(OBJ)
+	ranlib $(NAME)
 
-OBJS = ${SRCS:.c=.o}
-
-all:	${NAME}
-
-${NAME}: ${OBJS}
-		@${AR} ${NAME} ${OBJS}
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-		@${RM} ${OBJS}
+	rm -f $(OBJ)
 
-fclean:
-		@${RM} ${OBJS}
-		@${RM} ${NAME}
+fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
 

@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uns_num.c                                       :+:      :+:    :+:   */
+/*   ft_putptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: javmedin <javmedin@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 21:12:25 by javmedin          #+#    #+#             */
-/*   Updated: 2024/09/13 21:15:26 by javmedin         ###   ########.fr       */
+/*   Created: 2024/09/13 20:49:14 by javmedin          #+#    #+#             */
+/*   Updated: 2024/11/04 00:47:41 by javmedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-unsigned int    ft_uns_num(unsigned int num)
+static int	ft_putnbr_hex(unsigned long nb, int *count)
 {
-    int let;
+	char	*hex;
 
-    let = 0;
-    if (num > 9)
-    {
-        let = ft_uns_num(num / 10);
-        if (let == -1)
-                return (-1);
-        num = num % 10;
-    }
-    if (num <= 9)
-    {
-        if (ft_putchar(('0' + num)) == -1)
-                return (-1);
-        let++;
-    }
-    return (let);
+	hex = "0123456789abcdef";
+	if (nb >= 16)
+		ft_putnbr_hex(nb / 16, count);
+	ft_putchar_fd(hex[nb % 16], 1, count);
+	return (*count);
+}
+
+int	ft_putptr(void *ptr, int *count)
+{
+	unsigned long	nb;
+
+	nb = (unsigned long)ptr;
+	if (ptr == 0)
+		ft_putstr_fd("(nil)", 1, count);
+	else
+	{
+		ft_putstr_fd("0x", 1, count);
+		ft_putnbr_hex(nb, count);
+	}
+	return (*count);
 }

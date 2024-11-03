@@ -6,26 +6,25 @@
 /*   By: javmedin <javmedin@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:19:58 by javmedin          #+#    #+#             */
-/*   Updated: 2024/10/28 19:58:18 by javmedin         ###   ########.fr       */
+/*   Updated: 2024/11/04 00:43:08 by javmedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
 # include <stdarg.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-int				ft_putchar(int c);
-int				ft_putnbr(int n);
-int				ft_putstr(char *s);
-int				ft_printf(const	char *str, ...);
-unsigned int	ft_uns_num(unsigned int num);
-int				ft_point_hexa(void *p);
-size_t			ft_strlen(const	char *s);
-int				ft_hexa_mincap(int n);
-int				ft_hexa_cap(int n);
+int		ft_printf(char const *var, ...);
+int		ft_putnbr_base(unsigned int nbr, char *base, int *count);
+int		ft_putptr(void *ptr, int *count);
+int		ft_put_unsigned(unsigned int n, int *count);
+
+size_t	ft_strlen(const char *str);
+int		ft_putchar_fd(char c, int fd, int *count);
+int		ft_putstr_fd(char *s, int fd, int *count);
+int		ft_putnbr_fd(int n, int fd, int *count);
 
 #endif

@@ -6,86 +6,55 @@
 /*   By: javmedin <javmedin@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:18:42 by javmedin          #+#    #+#             */
-/*   Updated: 2024/10/28 01:03:25 by javmedin         ###   ########.fr       */
+/*   Updated: 2024/11/04 00:43:12 by javmedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	type_var(char c, va_list element);
-
-static int	w_str_percent(char c, va_list element)
+static int	handle_specifier(char spec, va_list args, int *count)
 {
-	int	let;
-
-	let = 0;
-	if (c != '%')
-	{
-		let = type_var(c, element);
-		if (let == -1)
-			return (-1);
-		return (let);
-	}
-	else
-	{
-		if (write(1, &c, 1) != 1)
-			return (-1);
-		return (1);
-	}
+	if (spec == 'c')
+		ft_putchar_fd(va_arg(args, int), 1, count);
+	else if (spec == 's')
+		ft_putstr_fd(va_arg(args, char *), 1, count);
+	else if (spec == 'p')
+		ft_putptr(va_arg(args, void *), count);
+	else if (spec == 'd' || spec == 'i')
+		ft_putnbr_fd(va_arg(args, int), 1, count);
+	else if (spec == 'u')
+		ft_put_unsigned(va_arg(args, unsigned int), count);
+	else if (spec == 'x')
+		ft_putnbr_base(va_arg(args, unsigned int), "0123456789abcdef", count);
+	else if (spec == 'X')
+		ft_putnbr_base(va_arg(args, unsigned int), "0123456789ABCDEF", count);
+	else if (spec == '%')
+		ft_putchar_fd('%', 1, count);
+	return (*count);
 }
 
-static int	w_str(const char *str, va_list element, int let)
+int	ft_printf(char const *var, ...)
 {
-	int	i;
+	va_list	args;
+	int		i;
+	int		count;
 
 	i = 0;
-	while (str[i])
+	count = 0;
+	va_start(args, var);
+	while (var[i])
 	{
-		if (str[i] == '%')
+		if (var[i] == '%' && var[i + 1])
 		{
-			let = let + w_str_percent(str[i + 1], element);
-			if (let == -1)
-				return (-1);
+			count = handle_specifier(var[++i], args, &count);
 			i++;
 		}
 		else
 		{
-			if (write(1, &str[i], 1) != 1)
-				return (-1);
-			let++;
+			count = ft_putchar_fd(var[i], 1, &count);
+			i++;
 		}
-		i++;
 	}
-	return (let);
-}
-
-int	ft_printf(const char *str, ...)
-{
-	va_list	element;
-	int		let;
-
-	let = 0;
-	va_start(element, str);
-	let = w_str(str, element, let);
-	va_end(element);
-	return (let);
-}
-
-static int	type_var(char c, va_list element)
-{
-	if (c == 'c')
-		return (ft_putchar(va_arg(element, int)));
-	if (c == 's')
-		return (ft_putstr(va_arg(element, char *)));
-	if (c == 'd' || c == 'i')
-		return (ft_putnbr(va_arg(element, int)));
-	if (c == 'p')
-		return (ft_point_hexa(va_arg(element, void *)));
-	if (c == 'u')
-		return (ft_uns_num(va_arg(element, unsigned int)));
-	if (c == 'X')
-		return (ft_hexa_cap(va_arg(element, int)));
-	if (c == 'x')
-		return (ft_hexa_mincap(va_arg(element, int)));
-	return (0);
+	va_end(args);
+	return (count);
 }

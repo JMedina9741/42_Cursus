@@ -6,18 +6,18 @@
 /*   By: javmedin <javmedin@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:27:56 by javmedin          #+#    #+#             */
-/*   Updated: 2024/09/13 21:27:58 by javmedin         ###   ########.fr       */
+/*   Updated: 2024/11/04 00:45:47 by javmedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(const char *str)
 {
 	size_t	i;
 
 	i = 0;
-	while (s[i])
+	while (str[i])
 		i++;
 	return (i);
 }
