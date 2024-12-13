@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_lines_utils.c                             :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: javmedin <javmedin@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:43:26 by javmedin          #+#    #+#             */
-/*   Updated: 2024/10/22 15:47:08 by javmedin         ###   ########.fr       */
+/*   Updated: 2024/12/13 23:38:43 by javmedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-unsigned long int	ft_strlen(char *str)
+size_t	ft_strlen(char *str)
 {
-	unsigned long int	i;
+	size_t	i;
 
 	i = 0;
 	if (!str)
@@ -26,7 +26,7 @@ unsigned long int	ft_strlen(char *str)
 
 char	*ft_strchr(char *str, int c)
 {
-	unsigned int	i;
+	int	i;
 
 	i = 0;
 	if (!str)
@@ -58,9 +58,9 @@ char	*ft_strjoin(char *content, char *buffer)
 	str = malloc((ft_strlen(content) + ft_strlen(buffer) + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
-	i = 0;
+	i = -1;
 	if (content)
-		while (content[i++])
+		while (content[++i])
 			str[i] = content[i];
 	j = 0;
 	while (buffer[j])

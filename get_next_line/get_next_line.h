@@ -6,7 +6,7 @@
 /*   By: javmedin <javmedin@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:43:49 by javmedin          #+#    #+#             */
-/*   Updated: 2024/10/22 15:47:08 by javmedin         ###   ########.fr       */
+/*   Updated: 2024/12/13 23:34:28 by javmedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char				*ft_read_to_left(int fd, char *content);
 char				*ft_get_line(char *content);
 char				*new_content(char *content);
 
-unsigned long int	ft_strlen(char *str);
+size_t	            ft_strlen(char *str);
 char				*ft_strchr(char *str, int c);
 char				*ft_strjoin(char *content, char *buffer);
 
